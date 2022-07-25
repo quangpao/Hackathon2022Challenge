@@ -98,6 +98,18 @@ actor {
     return new_array;
   };
 
+  //Another way to do it
+  public func remove_from_array(array : [Nat], number : Nat) : async [Nat] {
+    var new_array = Buffer.Buffer<Nat>(array.size());
+    for (i in array.vals()) {
+      if (i != number) {
+        new_array.add(i);
+      }
+    };
+    return new_array.toArray();
+  };
+
+
   ///////////
   // Ex 11 //
   ///////////
