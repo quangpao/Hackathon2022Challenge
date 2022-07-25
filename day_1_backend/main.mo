@@ -2,6 +2,7 @@ import Debug "mo:base/Debug";
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
 import Iter "mo:base/Iter";
+import Buffer "mo:base/Buffer";
 actor {
 
   //////////
@@ -31,26 +32,32 @@ actor {
   //////////
   // Ex 4 //
   //////////
-  public func increment_counter(counter : Nat) : async Nat {
-    return counter + 1;
+
+  var counter = 10;
+
+  public func increment_counter(n: Nat) : async Nat {
+    counter := counter + n;
+    return counter;
+  };
+
+
+  public func clear_counter() : async Nat {
+    counter := 0;
+    return counter;
   };
 
   //////////
-  // Ex 4 //
+  // Ex 5 //
   //////////
-  public func clear_counter(counter : Nat) : async Nat {
-    return 0;
+  public func divide(n : Nat, m : Nat) : async Bool {
+    
+    if (n % m == 0) return true;
+    return false;
+
   };
 
   //////////
   // Ex 6 //
-  //////////
-  public func divide(number1 : Nat, number2 : Nat) : async Nat {
-    return number1 / number2;
-  };
-
-  //////////
-  // Ex 7 //
   //////////
   public func is_even(number : Nat) : async Bool {
     if (number % 2 == 1) {
@@ -61,7 +68,7 @@ actor {
   };
 
   //////////
-  // Ex 8 //
+  // Ex 7 //
   //////////
   public func sum_of_array(array : [Nat]) : async Nat{
     var sum = 0;
@@ -73,7 +80,7 @@ actor {
 
 
   //////////
-  // Ex 9 //
+  // Ex 8 //
   //////////
   public func maximum(array : [Nat]) : async Nat {
     var max = array[0];
@@ -85,9 +92,9 @@ actor {
     return max;
   };
 
-  ///////////
-  // Ex 10 //
-  ///////////
+  //////////
+  // Ex 9 //
+  //////////
   public func remove_from_array(array : [Nat], number : Nat) : async [Nat] {
     var new_array : [Nat] = [];
     for (i in array.vals()) {
@@ -111,7 +118,7 @@ actor {
 
 
   ///////////
-  // Ex 11 //
+  // Ex 10 //
   ///////////
   public func selection_sort(array : [Nat]) : async [Nat] {
     var new_array : [var Nat] = Array.thaw<Nat>(array);
